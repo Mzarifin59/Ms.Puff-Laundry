@@ -135,7 +135,25 @@ export default {
       }
     )) as any;
 
-    console.log("Data:", oldData);
+    // Menghitung estimasi_selesai
+    let waktuSelesai = null;
+
+    const tanggalPesan = new Date(oldData.tanggal_pesan);
+    const estimasiHariList = (oldData.detail_transaksis || []).map((dt) => {
+      const est = (dt.layanan?.estimasi_selesai || 0);
+      return typeof est === "number" ? est : 0;
+    });
+    const estimasiHari = Math.max(...estimasiHariList, 0);
+
+    if (estimasiHari > 0) {
+      const estimasiSelesai = new Date(tanggalPesan);
+      estimasiSelesai.setDate(tanggalPesan.getDate() + estimasiHari);
+      event.params.data.estimasi_selesai = estimasiSelesai;
+    } else {
+      // Jika semua estimasi 0, gunakan tanggal pesan
+      waktuSelesai = tanggalPesan;
+      event.params.data.estimasi_selesai = waktuSelesai
+    }
 
     event.state = {
       previousStatusPengerjaan: oldData?.status_pengerjaan,
