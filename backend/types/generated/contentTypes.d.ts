@@ -460,7 +460,9 @@ export interface ApiLayananLayanan extends Struct.CollectionTypeSchema {
       'oneToMany',
       'api::detail-transaksi.detail-transaksi'
     >;
-    estimasi_selesai: Schema.Attribute.Integer & Schema.Attribute.DefaultTo<1>;
+    estimasi_selesai: Schema.Attribute.Integer &
+      Schema.Attribute.Required &
+      Schema.Attribute.DefaultTo<1>;
     estimasi_waktu: Schema.Attribute.String;
     harga: Schema.Attribute.Integer;
     image: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;

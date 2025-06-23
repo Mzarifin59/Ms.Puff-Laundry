@@ -43,8 +43,6 @@ export default {
       waktuSelesai = tanggalPesan;
     }
 
-    console.log("Estimasi selesai:", waktuSelesai);
-
     // Siapkan detail_transaksis untuk EmailJS
     const detailTransaksis = (dataDraft.detail_transaksis || []).map(
       (item) => ({
@@ -89,7 +87,7 @@ export default {
           },
           body: JSON.stringify({
             service_id: process.env.SERVICE_ID,
-            template_id: "template_yoahzhp",
+            template_id: process.env.TEMPLATE_ONE,
             user_id: process.env.PUBLIC_KEY,
             accessToken: process.env.PRIVATE_KEY,
             template_params: templateParams,
@@ -220,7 +218,7 @@ export default {
             },
             body: JSON.stringify({
               service_id: process.env.SERVICE_ID,
-              template_id: "template_l40kspd",
+              template_id: "template_qd75xto",
               user_id: process.env.PUBLIC_KEY,
               accessToken: process.env.PRIVATE_KEY,
               template_params: templateParams,
@@ -286,7 +284,7 @@ export default {
             },
             body: JSON.stringify({
               service_id: process.env.SERVICE_ID,
-              template_id: "template_l40kspd",
+              template_id: process.env.TEMPLATE_TWO,
               user_id: process.env.PUBLIC_KEY,
               accessToken: process.env.PRIVATE_KEY,
               template_params: templateParams,
